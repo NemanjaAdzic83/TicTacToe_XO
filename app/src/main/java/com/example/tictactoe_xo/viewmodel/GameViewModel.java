@@ -168,22 +168,30 @@ public class GameViewModel extends AndroidViewModel {
      * Vraca poslednji potez (UNDO) Dostupno samo dok partija traje
      */
     public void undoLastMove(){
-        if (moveHistory.isEmpty()) return;
+        if (!canUndo()) return;
         if (gameStatusLive.getValue() != GameStatus.IN_PROGRESS) return;
         if (aiThinking) return;
-        // U SOLO modu ,UNDo vraca i potez racunara i potez covjeka(dva poteza),tako da igrac uvijek ostaje na potezu nakon UNDO-a
-        int movesToUndo = (gameMode == GameMode.SOLO && moveHistory.size() >= 2) ? 2 : 1;
 
-        for (int i = 0; i < movesToUndo && !moveHistory.isEmpty(); i++){
+        if (gameMode == GameMode.SOLO) {
+            // Pop moves until the human's last move has been removed,
+            // so the human is always on turn after undo (works whether AI played first or not)
+            Move last;
+            do {
+                last = moveHistory.pop();
+                board.setCell(last.getCellIndex(), Player.EMPTY);
+            } while (last.getPlayer() != humanPlayer);
+            currentTurn = humanPlayer;
+        } else {
+            // DUO: undo exactly one move
             Move last = moveHistory.pop();
-            board.setCell(last.getCellIndex(),Player.EMPTY);
+            board.setCell(last.getCellIndex(), Player.EMPTY);
             currentTurn = last.getPlayer();
         }
 
         currentTurnLive.setValue(currentTurn);
         gameStatusLive.setValue(GameStatus.IN_PROGRESS);
         winLineLive.setValue(null);
-        undoAvailableLive.setValue(!moveHistory.isEmpty());
+        undoAvailableLive.setValue(canUndo());
 
         // ponovo se iscrtava cijela tabla iz modela
         boardResetLive.setValue(true);
@@ -219,7 +227,16 @@ public class GameViewModel extends AndroidViewModel {
         board.setCell(index,currentTurn);
         moveHistory.push(new Move(index,currentTurn));
         lastMoveLive.setValue(new Move(index,currentTurn));
-        undoAvailableLive.setValue(true);
+        undoAvailableLive.setValue(canUndo());
+    }
+
+    // In SOLO mode undo only makes sense if the human has made at least one move
+    private boolean canUndo() {
+        if (gameMode != GameMode.SOLO) return !moveHistory.isEmpty();
+        for (Move m : moveHistory) {
+            if (m.getPlayer() == humanPlayer) return true;
+        }
+        return false;
     }
 
     private void scheduleAiMove() {
