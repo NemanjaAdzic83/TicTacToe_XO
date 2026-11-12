@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.databinding.ActivitySettingsBinding;
 import com.example.tictactoe_xo.ui.widgets.ColorSwatchView;
+import com.example.tictactoe_xo.util.InsetsHelper;
 import com.example.tictactoe_xo.viewmodel.SettingsViewModel;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
        setContentView(binding.getRoot());
+       InsetsHelper.applySystemBarPadding(binding.getRoot());
 
        viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
 

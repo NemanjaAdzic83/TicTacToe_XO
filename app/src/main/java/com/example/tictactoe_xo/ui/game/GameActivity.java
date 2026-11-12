@@ -18,6 +18,7 @@ import com.example.tictactoe_xo.model.Player;
 import com.example.tictactoe_xo.model.WinLine;
 import com.example.tictactoe_xo.repository.PreferencesRepository;
 import com.example.tictactoe_xo.ui.widgets.SymbolView;
+import com.example.tictactoe_xo.util.InsetsHelper;
 import com.example.tictactoe_xo.util.SoundManager;
 import com.example.tictactoe_xo.util.VibrationManager;
 import com.example.tictactoe_xo.viewmodel.GameViewModel;
@@ -55,6 +56,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGameBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        InsetsHelper.applySystemBarPadding(binding.getRoot());
 
         prefsRepo = new PreferencesRepository(this); //Otvara SharedPreferences
         soundManager = new SoundManager(this, prefsRepo.isSoundEnabled()); //Pravi objekat za zvuk

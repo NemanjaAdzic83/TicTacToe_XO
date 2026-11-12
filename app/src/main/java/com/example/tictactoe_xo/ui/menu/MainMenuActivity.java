@@ -15,6 +15,7 @@ import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.databinding.ActivityMainMenuBinding;
 import com.example.tictactoe_xo.model.GameMode;
 import com.example.tictactoe_xo.ui.game.GameActivity;
+import com.example.tictactoe_xo.util.InsetsHelper;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        InsetsHelper.applySystemBarPadding(binding.getRoot());
 
         animateLogo();
         setupClickListeners();

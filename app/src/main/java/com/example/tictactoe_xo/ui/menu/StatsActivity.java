@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.databinding.ActivityStatsBinding;
 import com.example.tictactoe_xo.model.GameStats;
+import com.example.tictactoe_xo.util.InsetsHelper;
 import com.example.tictactoe_xo.viewmodel.SettingsViewModel;
 
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStatsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        InsetsHelper.applySystemBarPadding(binding.getRoot());
 
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         viewModel.refreshStats();

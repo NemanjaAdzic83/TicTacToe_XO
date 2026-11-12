@@ -12,6 +12,7 @@ import com.example.tictactoe_xo.model.Difficulty;
 import com.example.tictactoe_xo.model.GameMode;
 import com.example.tictactoe_xo.model.Player;
 import com.example.tictactoe_xo.ui.game.GameActivity;
+import com.example.tictactoe_xo.util.InsetsHelper;
 
 /**
  * Ekran za izbor nivoa tezine AI protivnika (lako/srednje/tesko) i izbor simbola kojim ce igrac igrati prije pokretanja solo partije
@@ -29,6 +30,7 @@ public class DifficultySelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDifficultySelectBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        InsetsHelper.applySystemBarPadding(binding.getRoot());
 
         setupDifficultyCards();
         setupSymbol();
