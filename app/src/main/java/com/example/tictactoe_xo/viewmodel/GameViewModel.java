@@ -126,6 +126,8 @@ public class GameViewModel extends AndroidViewModel {
      * Pokrece novu partiju , cisti tablu , ali ne resetuje skor meca
      */
     public void startNewMatch() {
+        // Cancel a pending AI move so it can't land on the new board
+        mainHandler.removeCallbacksAndMessages(null);
         board.reset();
         moveHistory.clear();
         currentTurn = Player.X;
