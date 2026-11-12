@@ -115,6 +115,8 @@ public class GameActivity extends AppCompatActivity {
         });
 
         binding.btnBackMenu.setOnClickListener( v -> finish());
+
+        binding.btnResetMatch.setOnClickListener(v -> viewModel.restartMatch());
     }
 
     private void redrawEntireBoard() {

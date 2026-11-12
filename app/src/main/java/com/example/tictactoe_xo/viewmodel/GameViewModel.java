@@ -273,6 +273,12 @@ public class GameViewModel extends AndroidViewModel {
         matchScoreLive.setValue(matchScore);
     }
 
+    /** Clears the board and resets the current match score (long-term stats are kept). */
+    public void restartMatch() {
+        resetMatchScore();
+        startNewMatch();
+    }
+
     @Override
     protected void onCleared(){
         super.onCleared();
