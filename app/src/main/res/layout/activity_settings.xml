@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_deep_space"
+    tools:context=".ui.menu.SettingsActivity">
+
+
+    <ImageButton
+        android:id="@+id/btnBackSettings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/content_desc_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_24"
+        app:tint="@color/text_primary" />
+
+    <TextView
+        android:id="@+id/tvTitleSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/title_settings"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleSettings">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingTop="32dp"
+            android:paddingEnd="@dimen/screen_padding"
+            android:paddingBottom="40dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvSound"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_sound"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchSound"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/neon_cyan"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@color/bg_grid_line"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvVibration"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_vibration"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchVibration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/neon_magenta"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/settings_player_x_color"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/bg_card"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchX1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchX2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchX3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchX4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchX5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchX6"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/settings_player_o_color"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/bg_card"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchO1"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchO2"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchO3"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchO4"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchO5"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+                <com.example.tictactoe_xo.ui.widgets.ColorSwatchView
+                    android:id="@+id/swatchO6"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnResetStats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Neon.Button"
+                android:layout_marginTop="32dp"
+                android:text="@string/settings_reset_stats"
+                app:strokeColor="@color/neon_red"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_deep_space"
+    tools:context=".ui.menu.StatsActivity">
+
+    <ImageButton
+        android:id="@+id/btnBackStats"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/transparent"
+        android:contentDescription="@string/content_desc_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_24"
+        app:tint="@color/text_primary" />
+
+    <TextView
+        android:id="@+id/tvTitleStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/title_stats"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEmptyStateStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/stats_empty"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleStats" />
+
+    <LinearLayout
+        android:id="@+id/cardTotalGames"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_padding"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:background="@drawable/bg_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleStats">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_total_games"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvTotalGames"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-black"
+            android:text="0"
+            android:textColor="@color/neon_purple"
+            android:textSize="40sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardXWins"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_padding"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_card"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardOWins"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardTotalGames">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_x_wins"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvXWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-black"
+            android:text="0"
+            android:textColor="@color/neon_cyan"
+            android:textSize="26sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardOWins"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/bg_card"
+        android:gravity="center"
+        android:padding="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardDraws"
+        app:layout_constraintStart_toEndOf="@+id/cardXWins"
+        app:layout_constraintTop_toBottomOf="@+id/cardTotalGames">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_o_wins"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tvOWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-black"
+            android:text="0"
+            android:textColor="@color/neon_magenta"
+            android:textSize="26sp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/cardDraws"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:background="@color/bg_card"
+        android:gravity="center"
+        android:padding="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cardOWins"
+        app:layout_constraintTop_toBottomOf="@id/cardTotalGames">
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stats_draws"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"/>
+
+
+        <TextView
+            android:id="@+id/tvDraws"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginTop="6dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/text_primary"
+            android:textSize="26sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cardWinRate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/screen_padding"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:background="@color/bg_card"
+        android:gravity="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardXWins">
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/stats_win_rate"
+            android:textColor="@color/text_primary"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvWinRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:fontFamily="sans-serif-black"
+            android:textSize="20sp"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

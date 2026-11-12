@@ -1,0 +1,63 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TicTacToe_XO" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/neon_cyan</item>
+        <item name="colorPrimaryDark">@color/bg_deep_space</item>
+        <item name="colorAccent">@color/neon_magenta</item>
+        <item name="android:windowBackground">@color/bg_deep_space</item>
+        <item name="android:statusBarColor">@color/bg_deep_space</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.TicTacToeNeon.Dialog</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+    </style>
+
+    <style name="ThemeOverlay.TicTacToeNeon.Dialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/neon_cyan</item>
+        <item name="colorAccent">@color/neon_magenta</item>
+        <item name="android:background">@color/bg_card</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+    </style>
+
+    <!-- Glavni naslov -->
+    <style name="TextAppearance.Neon.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">@color/neon_cyan</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <!-- Podnaslov -->
+    <style name="TextAppearance.Neon.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Dugme - neon outline stil -->
+    <style name="Widget.Neon.Button" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="strokeColor">@color/neon_cyan</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="rippleColor">@color/neon_cyan_glow</item>
+    </style>
+
+    <style name="Widget.Neon.Button.Magenta" parent="Widget.Neon.Button">
+        <item name="strokeColor">@color/neon_magenta</item>
+        <item name="rippleColor">@color/neon_magenta_glow</item>
+    </style>
+
+    <style name="Widget.Neon.Button.Filled" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/neon_cyan</item>
+        <item name="android:textColor">@color/bg_deep_space</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="Theme.TicTacToe_XO" parent="Base.Theme.TicTacToe_XO" />
+</resources>

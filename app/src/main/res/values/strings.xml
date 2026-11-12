@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">TicTacToe_XO</string>
+
+    <!--  Glavni meni  -->
+    <string name="app_tagline">Klasična igra. Neonski sjaj.</string>
+    <string name="btn_solo_mode">IGRAJ SOLO</string>
+    <string name="btn_duo_mode">IGRAJ U PARU</string>
+    <string name="btn_settings">PODEŠAVANJA</string>
+    <string name="btn_stats">STATISTIKA</string>
+    <string name="btn_exit">IZLAZ</string>
+
+    <!--  Izbor težine  -->
+    <string name="title_choose_difficulty">Izaberi težinu</string>
+    <string name="difficulty_easy">LAKO</string>
+    <string name="difficulty_easy_desc">Računar igra nasumično</string>
+    <string name="difficulty_medium">SREDNJE</string>
+    <string name="difficulty_medium_desc">Računar povremeno griješi</string>
+    <string name="difficulty_hard">TEŠKO</string>
+    <string name="difficulty_hard_desc">Računar igra savršeno</string>
+    <string name="btn_start_game">POČNI IGRU</string>
+
+    <!--  Igra  -->
+    <string name="turn_player_x">Na potezu: X</string>
+    <string name="turn_player_o">Na potezu: O</string>
+    <string name="turn_your_move">Tvoj potez</string>
+    <string name="turn_computer_thinking">Računar razmišlja…</string>
+    <string name="score_label">REZULTAT</string>
+    <string name="score_x">X</string>
+    <string name="score_o">O</string>
+    <string name="score_draws">NERJEŠENO</string>
+    <string name="btn_undo">VRATI POTEZ</string>
+    <string name="btn_reset_match">NOVA IGRA</string>
+    <string name="btn_back_to_menu">MENI</string>
+    <string name="content_desc_cell">Polje table</string>
+    <string name="content_desc_undo">Vrati potez</string>
+    <string name="content_desc_back">Nazad</string>
+
+    <!--  Rezultat partije  -->
+    <string name="result_win_x">X POBJEĐUJE!</string>
+    <string name="result_win_o">O POBJEĐUJE!</string>
+    <string name="result_draw">NERJEŠENO!</string>
+    <string name="result_you_win">POBJEDIO SI!</string>
+    <string name="result_you_lose">RAČUNAR POBJEĐUJE</string>
+    <string name="btn_play_again">IGRAJ JOŠ JEDNOM</string>
+    <string name="btn_change_settings">PROMIJENI PODEŠAVANJA</string>
+
+    <!--  Podešavanja  -->
+    <string name="title_settings">Podešavanja</string>
+    <string name="settings_sound">Zvučni efekti</string>
+    <string name="settings_vibration">Vibracija</string>
+    <string name="settings_player_x_color">Boja igrača X</string>
+    <string name="settings_player_o_color">Boja igrača O</string>
+    <string name="settings_reset_stats">Resetuj statistiku</string>
+    <string name="settings_reset_stats_confirm">Da li sigurno želiš da resetuješ svu statistiku?</string>
+    <string name="dialog_yes">DA</string>
+    <string name="dialog_no">NE</string>
+    <string name="dialog_cancel">OTKAŽI</string>
+    <string name="toast_stats_reset">Statistika je resetovana</string>
+
+    <!--  Statistika  -->
+    <string name="title_stats">Statistika</string>
+    <string name="stats_total_games">Ukupno partija</string>
+    <string name="stats_x_wins">Pobjede X</string>
+    <string name="stats_o_wins">Pobjede O</string>
+    <string name="stats_draws">Neriješeno</string>
+    <string name="stats_win_rate">Procenat pobjeda</string>
+    <string name="stats_empty">Još nema odigranih partija</string>
+
+    <!--  Mod igre  -->
+    <string name="mode_solo_title">Solo mod</string>
+    <string name="mode_solo_desc">Ti protiv računara</string>
+    <string name="mode_duo_title">Mod za dvoje</string>
+    <string name="mode_duo_desc">Igraj sa prijateljem na istom uređaju</string>
+    <string name="content_desc_app_logo">Logo aplikacije</string>
+
+</resources>

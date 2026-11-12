@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="board_cell_stroke_width">3dp</dimen>
+    <dimen name="board_corner_radius">20dp</dimen>
+    <dimen name="board_padding">12dp</dimen>
+    <dimen name="board_cell_margin">4dp</dimen>
+    <dimen name="symbol_stroke_width">10dp</dimen>
+    <dimen name="screen_padding">24dp</dimen>
+    <dimen name="card_corner_radius">24dp</dimen>
+    <dimen name="card_elevation">0dp</dimen>
+</resources>

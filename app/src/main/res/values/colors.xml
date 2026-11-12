@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <!-- POZADINA -->
+    <color name="bg_deep_space">#0A0E27</color>
+    <color name="bg_deep_space_alt">#0D1230</color>
+    <color name="bg_card">#141A3D</color>
+    <color name="bg_card_elevated">#1A2147</color>
+    <color name="bg_grid_line">#2A3366</color>
+
+    <!-- Neon Cyan - igrac X -->
+    <color name="neon_cyan">#00F0FF</color>
+    <color name="neon_cyan_dim">#0099A8</color>
+    <color name="neon_cyan_glow">#4D00F0FF</color>
+
+    <!-- Neon Magenta - igrac O -->
+    <color name="neon_magenta">#FF2EC4</color>
+    <color name="neon_magenta_dim">#A8158A</color>
+    <color name="neon_magenta_glow">#4DFF2EC4</color>
+
+    <!-- Neon Purple - akcenti -->
+    <color name="neon_purple">#B14EFF</color>
+    <color name="neon_purple_dim">#6A2E99</color>
+
+    <!-- Neon Yellow - pobjeda / highlight -->
+    <color name="neon_yellow">#FFE94D</color>
+    <color name="neon_yellow_glow">#4DFFE94D</color>
+
+    <!-- Neon Green - uspjeh / pozitivno -->
+    <color name="neon_green">#39FF8A</color>
+    <color name="neon_green_glow">#4D39FF8A</color>
+
+    <!-- Neon Red - greska -->
+    <color name="neon_red">#FF4D6A</color>
+
+    <!-- TEKST -->
+    <color name="text_primary">#F2F4FF</color>
+    <color name="text_secondary">#9BA3D4</color>
+    <color name="text_disabled">#4F5680</color>
+
+    <!-- Bazicne -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="overlay_dark">#CC0A0E27</color>
+
+    <!-- Custom boje igraca (paleta za biranje) -->
+    <color name="player_color_cyan">#00F0FF</color>
+    <color name="player_color_magenta">#FF2EC4</color>
+    <color name="player_color_yellow">#FFE94D</color>
+    <color name="player_color_green">#39FF8A</color>
+    <color name="player_color_purple">#B14EFF</color>
+    <color name="player_color_orange">#FF8A3D</color>
+</resources>
