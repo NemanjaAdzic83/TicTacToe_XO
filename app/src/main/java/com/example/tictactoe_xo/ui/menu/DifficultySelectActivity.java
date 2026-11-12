@@ -95,7 +95,7 @@ public class DifficultySelectActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(GameActivity.EXTRA_GAME_MODE, GameMode.SOLO.name());
         intent.putExtra(GameActivity.EXTRA_DIFFICULTY, selectedDifficulty.name());
-        intent.putExtra(GameActivity.EXTRA_DIFFICULTY, selectedDifficulty.name());
+        intent.putExtra(GameActivity.EXTRA_HUMAN_SYMBOL, selectedSymbol.name());
         startActivity(intent);
     }
 
