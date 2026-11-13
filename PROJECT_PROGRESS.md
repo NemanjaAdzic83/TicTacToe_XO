@@ -25,13 +25,32 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 
 ## Trenutni zadatak
 
-- Code review cijelog projekta (`android-code-review`) radi pravljenja novog spiska problema.
+- #1 iz spiska ispod.
 
-## Sljedeći koraci
+## Sljedeći koraci (code review, 2026-11-13)
 
-- Na osnovu review-a napraviti spisak problema po prioritetu i ispravljati ih jedan po jedan
-  (svaka ispravka = poseban commit).
+Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban commit.
+
+### Kritično
+- [ ] **#1** Dijalog rezultata se otvara 480 ms nakon kraja partije bez provjere: pad
+  (`BadTokenException`) ako se Activity zatvori/rotira u međuvremenu, ili stari dijalog
+  preko nove partije nakon NOVA IGRA (`GameActivity.showResultDialog`).
+
+### Važno
+- [ ] **#2** Sticky LiveData: rotacija ponavlja zvuk/vibraciju/animaciju posljednjeg poteza
+  i zvuk pobjede (`lastMove`, `gameStatus`). Ideja: `Event<T>` wrapper.
+- [ ] **#3** Process death: novi ViewModel ostaje u DUO modu jer se `configure()` poziva samo
+  kad je `savedInstanceState == null`. Ideja: `viewModel.isConfigured()`.
+
+### Sitno
+- [ ] **#4** Suvišni `redrawEntireBoard()` nakon undo i "Igraj ponovo" (to radi `boardReset` observer).
+- [ ] **#5** Neiskorišćeni Android importi u `model/Board.java` i `ai/TicTacToeAI.java`.
+- [ ] **#6** `resolveHumanPlayer()` duplira parsiranje; `GameMode.valueOf` bez `try/catch`.
+- [ ] **#7** Alokacije (`BlurMaskFilter`, `RectF`) u `SymbolView.onDraw()`.
+- [ ] **#8** Hardkodovan `"-"` u `StatsActivity`.
+- [ ] **#9** `SettingsViewModel` vraća `MutableLiveData` umjesto `LiveData`.
+- [ ] **#10** Mrtav kod, neiskorišćeni importi, prazni `catch`, greške u imenima (`oposite`, `findWinnLine`...).
 
 ## Otvorena pitanja / ideje za kasnije
 
-- (prazno)
+- **#11** Statistika broji pobjede X/O, a ne čovjek/AI – u SOLO modu "Win rate X" nema jasno značenje.
