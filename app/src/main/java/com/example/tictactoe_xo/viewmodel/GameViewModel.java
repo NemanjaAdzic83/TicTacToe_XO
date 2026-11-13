@@ -45,6 +45,8 @@ public class GameViewModel extends AndroidViewModel {
     private Player humanPlayer = Player.X;
     private Player currentTurn = Player.X;
     private boolean aiThinking = false;
+    // True once configure() has run; a fresh ViewModel (e.g. after process death) starts as false
+    private boolean configured = false;
 
     private final GameStats matchScore = new GameStats();
 
@@ -69,7 +71,12 @@ public class GameViewModel extends AndroidViewModel {
         this.gameMode = mode;
         this.difficulty = difficulty;
         this.humanPlayer = humanPlayer;
+        configured = true;
         startNewMatch();
+    }
+
+    public boolean isConfigured(){
+        return configured;
     }
 
     public GameMode getGameMode(){

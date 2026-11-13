@@ -68,7 +68,11 @@ public class GameActivity extends AppCompatActivity {
         setupButtons();      // Povezuje dugmad
 
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
-        configureViewModel(savedInstanceState == null); // Ako je prvi put otvorena igra, konfigurise ViewModel.Ako je rotacija ne radi nista
+        // Configure only a fresh ViewModel: after rotation it already holds the game,
+        // after process death it is new and must be configured again from the Intent
+        if (!viewModel.isConfigured()) {
+            configureViewModel();
+        }
         observeViewModel();  // Pocinje posmatrati LiveData objekte
         
 
@@ -130,9 +134,7 @@ public class GameActivity extends AppCompatActivity {
         binding.winLineView.clearLine();
     }
 
-    private void configureViewModel(boolean firstLaunch){
-        if (!firstLaunch) return; //
-
+    private void configureViewModel(){
         Difficulty difficulty = Difficulty.MEDIUM;
         String diffName = getIntent().getStringExtra(EXTRA_DIFFICULTY);
         if (diffName != null){
