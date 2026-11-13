@@ -19,6 +19,7 @@ import com.example.tictactoe_xo.model.Move;
 import com.example.tictactoe_xo.model.Player;
 import com.example.tictactoe_xo.model.WinLine;
 import com.example.tictactoe_xo.repository.PreferencesRepository;
+import com.example.tictactoe_xo.util.Event;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -56,7 +57,9 @@ public class GameViewModel extends AndroidViewModel {
     private final MutableLiveData<WinLine> winLineLive = new MutableLiveData<>();
     private final MutableLiveData<GameStats> matchScoreLive = new MutableLiveData<>(matchScore);
     private final MutableLiveData<Boolean> aiThinkingLive = new MutableLiveData<>(false);
-    private final MutableLiveData<Move> lastMoveLive = new MutableLiveData<>();
+    // One-time events (sound, vibration, animation) - must not be replayed after rotation
+    private final MutableLiveData<Event<Move>> lastMoveLive = new MutableLiveData<>();
+    private final MutableLiveData<Event<GameStatus>> gameEndEventLive = new MutableLiveData<>();
     private final MutableLiveData<Boolean> boardResetLive = new MutableLiveData<>();
     private final MutableLiveData<Boolean> undoAvailableLive = new MutableLiveData<>(false);
 
@@ -108,8 +111,12 @@ public class GameViewModel extends AndroidViewModel {
         return aiThinkingLive;
     }
 
-    public LiveData<Move> getLastMove(){
+    public LiveData<Event<Move>> getLastMove(){
         return lastMoveLive;
+    }
+
+    public LiveData<Event<GameStatus>> getGameEndEvent(){
+        return gameEndEventLive;
     }
 
     public LiveData<Boolean> getBoardReset(){
@@ -219,6 +226,7 @@ public class GameViewModel extends AndroidViewModel {
         if (status == GameStatus.IN_PROGRESS) return false;
 
         gameStatusLive.setValue(status);
+        gameEndEventLive.setValue(new Event<>(status));
         matchScore.incrementForStatus(status);
         matchScoreLive.setValue(matchScore);
         prefsRepo.saveStatsForResult(status);
@@ -235,7 +243,7 @@ public class GameViewModel extends AndroidViewModel {
     private void applyMove(int index, Player currentTurn) {
         board.setCell(index,currentTurn);
         moveHistory.push(new Move(index,currentTurn));
-        lastMoveLive.setValue(new Move(index,currentTurn));
+        lastMoveLive.setValue(new Event<>(new Move(index,currentTurn)));
         undoAvailableLive.setValue(canUndo());
     }
 

@@ -18,6 +18,7 @@ import com.example.tictactoe_xo.model.Player;
 import com.example.tictactoe_xo.model.WinLine;
 import com.example.tictactoe_xo.repository.PreferencesRepository;
 import com.example.tictactoe_xo.ui.widgets.SymbolView;
+import com.example.tictactoe_xo.util.Event;
 import com.example.tictactoe_xo.util.InsetsHelper;
 import com.example.tictactoe_xo.util.SoundManager;
 import com.example.tictactoe_xo.util.VibrationManager;
@@ -163,6 +164,7 @@ public class GameActivity extends AppCompatActivity {
         viewModel.getCurrentTurn().observe(this,this::updateTurnLabel);
         viewModel.getLastMove().observe(this, this::onMoveApplied);
         viewModel.getGameStatus().observe(this, this::onGameStatusChanged);
+        viewModel.getGameEndEvent().observe(this, this::onGameEnded);
         viewModel.getWinLine().observe(this, this::onWinLineReceived);
         viewModel.getMatchScore().observe(this, this::updateScoreboard);
 
@@ -221,8 +223,18 @@ public class GameActivity extends AppCompatActivity {
         return new float[]{centerX,centerY};
     }
 
+    // State: also called again after rotation, so the result dialog is shown on the new screen
     private void onGameStatusChanged(GameStatus status) {
         if (status == null || status == GameStatus.IN_PROGRESS) return;
+
+        binding.boardContainer.postDelayed(() -> showResultDialog(status), 480);
+    }
+
+    // One-time event: sound and vibration play only when the game actually ends, not after rotation
+    private void onGameEnded(Event<GameStatus> event) {
+        if (event == null) return;
+        GameStatus status = event.getContentIfNotHandled();
+        if (status == null) return;
 
         if (status == GameStatus.DRAW){
             soundManager.playDraw();
@@ -230,8 +242,6 @@ public class GameActivity extends AppCompatActivity {
             soundManager.playWin();
             vibrationManager.vibrateWIn();
         }
-
-        binding.boardContainer.postDelayed(() -> showResultDialog(status), 480);
     }
 
     private void showResultDialog(GameStatus status) {
@@ -285,7 +295,10 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void onMoveApplied(Move move) {
+    // One-time event: animate + sound only for a new move; after rotation boardReset redraws the board
+    private void onMoveApplied(Event<Move> event) {
+        if (event == null) return;
+        Move move = event.getContentIfNotHandled();
         if (move == null) return;
         SymbolView view = cellViews[move.getCellIndex()];
         view.setSymbolColor(move.getPlayer() == Player.X ? playerXColor : playerOColor);
