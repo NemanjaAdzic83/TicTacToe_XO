@@ -25,7 +25,7 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 
 ## Trenutni zadatak
 
-- #2 iz spiska ispod.
+- Sitne stavke (#4–#10) iz spiska ispod.
 
 ## Sljedeći koraci (code review, 2026-11-13)
 
@@ -37,7 +37,7 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
   preko nove partije nakon NOVA IGRA (`GameActivity.showResultDialog`).
 
 ### Važno
-- [ ] **#2** Sticky LiveData: rotacija ponavlja zvuk/vibraciju/animaciju posljednjeg poteza
+- [x] **#2** Sticky LiveData: rotacija ponavlja zvuk/vibraciju/animaciju posljednjeg poteza
   i zvuk pobjede (`lastMove`, `gameStatus`). Ideja: `Event<T>` wrapper.
 - [x] **#3** Process death: novi ViewModel ostaje u DUO modu jer se `configure()` poziva samo
   kad je `savedInstanceState == null`. Ideja: `viewModel.isConfigured()`.
