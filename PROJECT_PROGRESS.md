@@ -25,14 +25,14 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 
 ## Trenutni zadatak
 
-- #1 iz spiska ispod.
+- #3 iz spiska ispod.
 
 ## Sljedeći koraci (code review, 2026-11-13)
 
 Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban commit.
 
 ### Kritično
-- [ ] **#1** Dijalog rezultata se otvara 480 ms nakon kraja partije bez provjere: pad
+- [x] **#1** Dijalog rezultata se otvara 480 ms nakon kraja partije bez provjere: pad
   (`BadTokenException`) ako se Activity zatvori/rotira u međuvremenu, ili stari dijalog
   preko nove partije nakon NOVA IGRA (`GameActivity.showResultDialog`).
 
