@@ -233,6 +233,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void showResultDialog(GameStatus status) {
+        // The dialog is posted with a delay: the Activity may be gone by now (back/rotation),
+        // or a new game may have started (NOVA IGRA), so this result is no longer current
+        if (isFinishing() || isDestroyed()) return;
+        if (viewModel.getGameStatus().getValue() != status) return;
+
         String title;
         if (gameMode == GameMode.SOLO){
             Player human = resolveHumanPlayer();
