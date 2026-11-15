@@ -116,10 +116,8 @@ public class GameActivity extends AppCompatActivity {
     }
     
     private void setupButtons(){
-        binding.btnUndo.setOnClickListener( v -> {
-            viewModel.undoLastMove();
-            redrawEntireBoard();
-        });
+        // Board is redrawn by the boardReset observer
+        binding.btnUndo.setOnClickListener(v -> viewModel.undoLastMove());
 
         binding.btnBackMenu.setOnClickListener( v -> finish());
 
@@ -275,10 +273,8 @@ public class GameActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setCancelable(false)
-                .setPositiveButton(R.string.btn_play_again,((dialogInterface, i) -> {
-                    viewModel.startNewMatch();
-                    redrawEntireBoard();
-                }))
+                .setPositiveButton(R.string.btn_play_again,
+                        (dialogInterface, i) -> viewModel.startNewMatch())
                 .setNegativeButton(R.string.btn_back_to_menu,((dialogInterface, i) -> finish()))
                 .show();
 
