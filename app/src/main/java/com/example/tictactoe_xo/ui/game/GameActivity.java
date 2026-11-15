@@ -38,7 +38,7 @@ import com.example.tictactoe_xo.viewmodel.GameViewModel;
 public class GameActivity extends AppCompatActivity {
 
     // KONSTANTE - Koriste se za prenos podataka između Activity-ja.
-    public static final String EXTRA_GAME_MODE = "extra_game_mod";
+    public static final String EXTRA_GAME_MODE = "extra_game_mode";
     public static final String EXTRA_DIFFICULTY = "extra_difficulty";
     public static final String EXTRA_HUMAN_SYMBOL = "extra_human_symbol";
 
@@ -96,12 +96,12 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < cellViews.length; i++){
             final int index = i;
             cellViews[i].setSymbolColor(playerXColor);
-            cellViews[i].setOnClickListener(v -> onCellTaped(index));
+            cellViews[i].setOnClickListener(v -> onCellTapped(index));
         }
     }
     
 
-    private void onCellTaped(int index) {
+    private void onCellTapped(int index) {
         if (viewModel.isHumanTurnBlocked()) return;
         if (viewModel.getGameStatus().getValue() != GameStatus.IN_PROGRESS) return;
         if (!viewModel.getBoard().isCellEmpty(index)) return;
@@ -228,7 +228,7 @@ public class GameActivity extends AppCompatActivity {
             soundManager.playDraw();
         }else {
             soundManager.playWin();
-            vibrationManager.vibrateWIn();
+            vibrationManager.vibrateWin();
         }
     }
 

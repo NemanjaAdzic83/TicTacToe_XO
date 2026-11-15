@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.databinding.ActivityStatsBinding;
 import com.example.tictactoe_xo.model.GameStats;
 import com.example.tictactoe_xo.util.InsetsHelper;
@@ -45,7 +46,7 @@ public class StatsActivity extends AppCompatActivity {
         binding.tvDraws.setText(String.valueOf(gameStats.getDraw()));
 
         if (total == 0){
-           binding.tvWinRate.setText("-");
+           binding.tvWinRate.setText(R.string.stats_no_value);
            binding.tvEmptyStateStats.setVisibility(View.VISIBLE);
         }else {
             binding.tvWinRate.setText(String.format(Locale.getDefault(), "%.0f%%", gameStats.getWinRateX()));

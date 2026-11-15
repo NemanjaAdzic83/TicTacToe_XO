@@ -220,7 +220,7 @@ public class GameViewModel extends AndroidViewModel {
 
 
     private void switchTurn() {
-        currentTurn = currentTurn.oposite();
+        currentTurn = currentTurn.opposite();
         currentTurnLive.setValue(currentTurn);
     }
 
@@ -236,9 +236,9 @@ public class GameViewModel extends AndroidViewModel {
         prefsRepo.saveStatsForResult(status);
 
         if (status == GameStatus.WIN_X){
-            winLineLive.setValue(board.findWinnLine(Player.X));
+            winLineLive.setValue(board.findWinLine(Player.X));
         } else if (status == GameStatus.WIN_O) {
-            winLineLive.setValue(board.findWinnLine(Player.O));
+            winLineLive.setValue(board.findWinLine(Player.O));
         }
         return true;
 
@@ -266,7 +266,7 @@ public class GameViewModel extends AndroidViewModel {
 
         // Mali "delay" kako bi Ai potez izgledao kao razmisljanje
         long delay = 450 + (long) (Math.random() * 350);
-        Player aiPlayer = humanPlayer.oposite();
+        Player aiPlayer = humanPlayer.opposite();
 
         mainHandler.postDelayed(() -> {
             if (gameStatusLive.getValue() != GameStatus.IN_PROGRESS){

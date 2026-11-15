@@ -21,7 +21,7 @@ public class VibrationManager {
     public void vibrateTap(){
         vibrate(25);
     }
-    public void vibrateWIn(){
+    public void vibrateWin(){
         vibrate(80);
     }
 

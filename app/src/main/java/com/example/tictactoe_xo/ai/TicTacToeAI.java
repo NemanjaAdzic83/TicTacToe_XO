@@ -60,7 +60,7 @@ public class TicTacToeAI {
  * Pronalazi optimalan potez koristeci minimax sa minValue-maxValue secenjem
  */
     private int bestMove(Board board, Player aiPlayer) {
-        Player opponent = aiPlayer.oposite();
+        Player opponent = aiPlayer.opposite();
         int bestScore = Integer.MIN_VALUE;
         int move = board.getEmptyCells().get(0);
 

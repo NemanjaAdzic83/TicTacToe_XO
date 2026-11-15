@@ -2,6 +2,7 @@ package com.example.tictactoe_xo.ui.widgets;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -39,6 +40,8 @@ public class SymbolView extends View {
 
     private final Paint strokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint glowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    // Reused in every onDraw() call; onDraw runs up to 60x per second during animation
+    private final RectF arcRect = new RectF();
 
     private float drawProgress = 0f; // 0..1 progres animacije iscrtavanja
 
@@ -86,15 +89,14 @@ public class SymbolView extends View {
         invalidate();
     }
 
-    public void clear() {
-        if (drawAnimator != null) drawAnimator.cancel();
-        symbol = Player.EMPTY;
-        drawProgress = 0f;
-        invalidate();
-    }
-
-    public Player getSymbol() {
-        return symbol;
+    // Blur radius depends on the view size, so the filter is created only when the size changes
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        float strokeW = Math.min(w, h) * 0.11f;
+        glowPaint.setMaskFilter(strokeW > 0f
+                ? new BlurMaskFilter(strokeW * 0.9f, BlurMaskFilter.Blur.NORMAL)
+                : null);
     }
 
     @Override
@@ -114,7 +116,6 @@ public class SymbolView extends View {
         glowPaint.setColor(symbolColor);
         glowPaint.setStrokeWidth(strokeW * 1.9f);
         glowPaint.setAlpha(70);
-        glowPaint.setMaskFilter(new android.graphics.BlurMaskFilter(strokeW * 0.9f, android.graphics.BlurMaskFilter.Blur.NORMAL));
 
         float cx = w / 2f;
         float cy = h / 2f;
@@ -153,11 +154,11 @@ public class SymbolView extends View {
     }
 
     private void drawO(Canvas canvas, float cx, float cy, float size, float padding) {
-        RectF rect = new RectF(padding, padding, size - padding, size - padding);
+        arcRect.set(padding, padding, size - padding, size - padding);
         float sweep = 360f * drawProgress;
 
-        canvas.drawArc(rect, -90f, sweep, false, glowPaint);
-        canvas.drawArc(rect, -90f, sweep, false, strokePaint);
+        canvas.drawArc(arcRect, -90f, sweep, false, glowPaint);
+        canvas.drawArc(arcRect, -90f, sweep, false, strokePaint);
     }
 
 }

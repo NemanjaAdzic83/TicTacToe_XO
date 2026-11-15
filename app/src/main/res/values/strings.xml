@@ -65,6 +65,7 @@
     <string name="stats_draws">Neriješeno</string>
     <string name="stats_win_rate">Procenat pobjeda</string>
     <string name="stats_empty">Još nema odigranih partija</string>
+    <string name="stats_no_value">-</string>
 
     <!--  Mod igre  -->
     <string name="mode_solo_title">Solo mod</string>

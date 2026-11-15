@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.tictactoe_xo.R;
@@ -43,23 +44,23 @@ public class SettingsViewModel extends AndroidViewModel {
         stats.setValue(prefsRepo.loadStats());
     }
 
-    public MutableLiveData<Boolean> getSoundEnabled() {
+    public LiveData<Boolean> getSoundEnabled() {
         return soundEnabled;
     }
 
-    public MutableLiveData<Boolean> getVibrationEnabled() {
+    public LiveData<Boolean> getVibrationEnabled() {
         return vibrationEnabled;
     }
 
-    public MutableLiveData<Integer> getColorX() {
+    public LiveData<Integer> getColorX() {
         return colorX;
     }
 
-    public MutableLiveData<Integer> getColorO() {
+    public LiveData<Integer> getColorO() {
         return colorO;
     }
 
-    public MutableLiveData<GameStats> getStats() {
+    public LiveData<GameStats> getStats() {
         return stats;
     }
 
@@ -74,11 +75,11 @@ public class SettingsViewModel extends AndroidViewModel {
     }
 
     public void setColorX(int color){
-        prefsRepo.setPLayerXColor(color);
+        prefsRepo.setPlayerXColor(color);
         colorX.setValue(color);
     }
     public void setColorO(int color){
-        prefsRepo.setPLayerOColor(color);
+        prefsRepo.setPlayerOColor(color);
         colorO.setValue(color);
     }
 

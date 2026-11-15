@@ -89,7 +89,7 @@ public class Board {
      * Provjerava da li je dati igrac pobjedio i ako jeste vraca odgovarajucu
      * pobjednicku liniju. Ako nema pobjede vraca null
      */
-    public WinLine findWinnLine(Player player){
+    public WinLine findWinLine(Player player){
         for (int[] combo : WIN_COMBINATIONS){
             if (cells[combo[0]] == player && cells[combo[1]] == player
             && cells[combo[2]] == player){
@@ -100,7 +100,7 @@ public class Board {
     }
 
     public boolean hasWinner(Player player){
-        return findWinnLine(player) != null;
+        return findWinLine(player) != null;
     }
 
 

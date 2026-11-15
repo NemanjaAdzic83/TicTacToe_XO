@@ -61,7 +61,7 @@ public class PreferencesRepository {
         return prefs.getInt(KEY_COLOR_X,defaultColor);
     }
 
-    public void setPLayerXColor(int colorRes){
+    public void setPlayerXColor(int colorRes){
         prefs.edit().putInt(KEY_COLOR_X,colorRes).apply();
     }
 
@@ -69,7 +69,7 @@ public class PreferencesRepository {
         return prefs.getInt(KEY_COLOR_O,defaultColor);
     }
 
-    public void setPLayerOColor(int colorRes){
+    public void setPlayerOColor(int colorRes){
         prefs.edit().putInt(KEY_COLOR_O,colorRes).apply();
     }
 

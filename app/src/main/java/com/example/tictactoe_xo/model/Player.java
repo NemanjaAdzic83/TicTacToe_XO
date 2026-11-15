@@ -14,7 +14,7 @@ public enum Player {
      * Vraca suprotnog igraca, koristi se za smjenu poteza
      * Koristi se umjesto if/else blokova
      */
-    public Player oposite(){
+    public Player opposite(){
         if (this == X) return O;
         if (this == O) return X;
         return EMPTY;

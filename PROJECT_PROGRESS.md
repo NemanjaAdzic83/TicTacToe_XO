@@ -25,7 +25,7 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 
 ## Trenutni zadatak
 
-- Sitne stavke (#4–#10) iz spiska ispod.
+- Sve stavke iz code review-a (#1–#10) su završene. Otvoreno je pitanje #11.
 
 ## Sljedeći koraci (code review, 2026-11-13)
 
@@ -46,10 +46,10 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
 - [x] **#4** Suvišni `redrawEntireBoard()` nakon undo i "Igraj ponovo" (to radi `boardReset` observer).
 - [x] **#5** Neiskorišćeni Android importi u `model/Board.java` i `ai/TicTacToeAI.java`.
 - [x] **#6** `resolveHumanPlayer()` duplira parsiranje; `GameMode.valueOf` bez `try/catch`.
-- [ ] **#7** Alokacije (`BlurMaskFilter`, `RectF`) u `SymbolView.onDraw()`.
-- [ ] **#8** Hardkodovan `"-"` u `StatsActivity`.
-- [ ] **#9** `SettingsViewModel` vraća `MutableLiveData` umjesto `LiveData`.
-- [ ] **#10** Mrtav kod, neiskorišćeni importi, prazni `catch`, greške u imenima (`oposite`, `findWinnLine`...).
+- [x] **#7** Alokacije (`BlurMaskFilter`, `RectF`) u `SymbolView.onDraw()`.
+- [x] **#8** Hardkodovan `"-"` u `StatsActivity`.
+- [x] **#9** `SettingsViewModel` vraća `MutableLiveData` umjesto `LiveData`.
+- [x] **#10** Mrtav kod, neiskorišćeni importi, prazni `catch`, greške u imenima (`oposite`, `findWinnLine`...).
 
 ## Otvorena pitanja / ideje za kasnije
 
