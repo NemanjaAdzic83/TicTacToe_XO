@@ -1,18 +1,11 @@
 package com.example.tictactoe_xo.ui.menu;
 
-
-
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.databinding.ActivityStatsBinding;
 import com.example.tictactoe_xo.model.GameStats;
 import com.example.tictactoe_xo.util.InsetsHelper;

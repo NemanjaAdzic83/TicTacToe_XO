@@ -1,7 +1,6 @@
 package com.example.tictactoe_xo.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;

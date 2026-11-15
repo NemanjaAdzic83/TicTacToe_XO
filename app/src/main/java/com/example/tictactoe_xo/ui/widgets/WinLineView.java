@@ -9,11 +9,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.GridLayout;
 
 import androidx.annotation.Nullable;
-
-import com.example.tictactoe_xo.model.Player;
 
 
 /**
