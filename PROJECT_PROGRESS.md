@@ -43,7 +43,7 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
   kad je `savedInstanceState == null`. Ideja: `viewModel.isConfigured()`.
 
 ### Sitno
-- [ ] **#4** Suvišni `redrawEntireBoard()` nakon undo i "Igraj ponovo" (to radi `boardReset` observer).
+- [x] **#4** Suvišni `redrawEntireBoard()` nakon undo i "Igraj ponovo" (to radi `boardReset` observer).
 - [ ] **#5** Neiskorišćeni Android importi u `model/Board.java` i `ai/TicTacToeAI.java`.
 - [ ] **#6** `resolveHumanPlayer()` duplira parsiranje; `GameMode.valueOf` bez `try/catch`.
 - [ ] **#7** Alokacije (`BlurMaskFilter`, `RectF`) u `SymbolView.onDraw()`.
