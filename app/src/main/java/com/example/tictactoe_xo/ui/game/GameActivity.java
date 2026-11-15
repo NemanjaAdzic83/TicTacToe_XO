@@ -1,6 +1,7 @@
 package com.example.tictactoe_xo.ui.game;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -50,7 +51,6 @@ public class GameActivity extends AppCompatActivity {
     private SymbolView[] cellViews; // niz od 9 polja
     private int playerXColor; // boja igraca X
     private int playerOColor; // boja igraca O
-    private GameMode gameMode; // Nacin igre, SOLO ili DUO
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,6 @@ public class GameActivity extends AppCompatActivity {
         vibrationManager = new VibrationManager(this,prefsRepo.isVibrationEnabled()); // Pravi objekat za vibraciju
 
         loadPlayerColors();  // Usitava boje
-        readIntentExtras();  // Cita podatke koje je prethodni ekran poslao
         setupBoardViews();   // Povezuje svih 9 polja
         setupButtons();      // Povezuje dugmad
 
@@ -85,11 +84,6 @@ public class GameActivity extends AppCompatActivity {
         playerXColor = prefsRepo.getPlayerXColor(getColor(R.color.player_color_cyan));
         playerOColor = prefsRepo.getPlayerOColor(getColor(R.color.player_color_magenta));
         binding.winLineView.setLineColor(getColor(R.color.neon_yellow));
-    }
-    
-    private void readIntentExtras(){
-        String modeName = getIntent().getStringExtra(EXTRA_GAME_MODE);
-        gameMode = modeName != null ? GameMode.valueOf(modeName) : GameMode.DUO;
     }
     
     private void setupBoardViews(){
@@ -133,28 +127,24 @@ public class GameActivity extends AppCompatActivity {
         binding.winLineView.clearLine();
     }
 
+    // Reads the game setup sent by the previous screen; the ViewModel then holds it
     private void configureViewModel(){
-        Difficulty difficulty = Difficulty.MEDIUM;
-        String diffName = getIntent().getStringExtra(EXTRA_DIFFICULTY);
-        if (diffName != null){
-            try {
-                difficulty = Difficulty.valueOf(diffName);
-            }catch (IllegalArgumentException e){
+        Intent intent = getIntent();
+        GameMode mode = parseEnum(intent.getStringExtra(EXTRA_GAME_MODE), GameMode.class, GameMode.DUO);
+        Difficulty difficulty = parseEnum(intent.getStringExtra(EXTRA_DIFFICULTY), Difficulty.class, Difficulty.MEDIUM);
+        Player humanSymbol = parseEnum(intent.getStringExtra(EXTRA_HUMAN_SYMBOL), Player.class, Player.X);
 
-            }
+        viewModel.configure(mode, difficulty, humanSymbol);
+    }
+
+    // Parses an enum name from the Intent; returns fallback if missing or invalid
+    private static <E extends Enum<E>> E parseEnum(String name, Class<E> type, E fallback) {
+        if (name == null) return fallback;
+        try {
+            return Enum.valueOf(type, name);
+        } catch (IllegalArgumentException e) {
+            return fallback;
         }
-
-        Player humanSymbol = Player.X;
-        String symbolName = getIntent().getStringExtra(EXTRA_HUMAN_SYMBOL);
-        if (symbolName != null){
-            try {
-                humanSymbol = Player.valueOf(symbolName);
-            }catch (IllegalArgumentException e){
-
-            }
-        }
-
-        viewModel.configure(gameMode, difficulty, humanSymbol);
     }
 
     private void observeViewModel() {
@@ -249,8 +239,8 @@ public class GameActivity extends AppCompatActivity {
         if (viewModel.getGameStatus().getValue() != status) return;
 
         String title;
-        if (gameMode == GameMode.SOLO){
-            Player human = resolveHumanPlayer();
+        if (viewModel.getGameMode() == GameMode.SOLO){
+            Player human = viewModel.getHumanPlayer();
             if (status == GameStatus.DRAW){
                 title = getString(R.string.result_draw);
             } else if ((status == GameStatus.WIN_X && human == Player.X)
@@ -278,17 +268,6 @@ public class GameActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.btn_back_to_menu,((dialogInterface, i) -> finish()))
                 .show();
 
-    }
-
-    private Player resolveHumanPlayer() {
-        String symbolName = getIntent().getStringExtra(EXTRA_HUMAN_SYMBOL);
-        if (symbolName == null) return Player.X;
-
-        try {
-            return Player.valueOf(symbolName);
-        }catch (IllegalArgumentException  e){
-            return Player.X;
-        }
     }
 
     // One-time event: animate + sound only for a new move; after rotation boardReset redraws the board

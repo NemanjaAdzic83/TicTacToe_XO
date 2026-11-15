@@ -90,6 +90,10 @@ public class GameViewModel extends AndroidViewModel {
         return difficulty;
     }
 
+    public Player getHumanPlayer(){
+        return humanPlayer;
+    }
+
     //--- LIVEDATA GETTERI ---
     public LiveData<Player> getCurrentTurn(){
         return currentTurnLive;
