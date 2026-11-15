@@ -1,14 +1,10 @@
 package com.example.tictactoe_xo.ai;
 
-
-import androidx.appcompat.app.WindowDecorActionBar;
-
 import com.example.tictactoe_xo.model.Board;
 import com.example.tictactoe_xo.model.Difficulty;
 import com.example.tictactoe_xo.model.GameStatus;
 import com.example.tictactoe_xo.model.Player;
 
-import java.nio.charset.MalformedInputException;
 import java.util.List;
 import java.util.Random;
 

@@ -1,12 +1,7 @@
 package com.example.tictactoe_xo.model;
 
-import android.net.ipsec.ike.exceptions.IkeNetworkLostException;
-
-import com.google.android.material.appbar.AppBarLayout;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BinaryOperator;
 
 /**
  *  Predstavlja tablu 3x3  i sadrzi svu logiku oko provjere pobjede, nerjesenog rezultata
