@@ -83,6 +83,9 @@ public class GameActivity extends AppCompatActivity {
     private void loadPlayerColors() {
         playerXColor = prefsRepo.getPlayerXColor(getColor(R.color.player_color_cyan));
         playerOColor = prefsRepo.getPlayerOColor(getColor(R.color.player_color_magenta));
+        // Scoreboard labels use the same colors as the symbols on the board
+        binding.tvScoreLabelX.setTextColor(playerXColor);
+        binding.tvScoreLabelO.setTextColor(playerOColor);
         binding.winLineView.setLineColor(getColor(R.color.neon_yellow));
     }
     

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TicTacToe_XO</string>
+    <string name="app_name">TicTacToe NEON</string>
 
     <!--  Glavni meni  -->
     <string name="app_tagline">Klasična igra. Neonski sjaj.</string>
@@ -27,7 +27,7 @@
     <string name="score_label">REZULTAT</string>
     <string name="score_x">X</string>
     <string name="score_o">O</string>
-    <string name="score_draws">NERJEŠENO</string>
+    <string name="score_draws">NERIJEŠENO</string>
     <string name="btn_undo">VRATI POTEZ</string>
     <string name="btn_reset_match">NOVA IGRA</string>
     <string name="btn_back_to_menu">MENI</string>
@@ -38,7 +38,7 @@
     <!--  Rezultat partije  -->
     <string name="result_win_x">X POBJEĐUJE!</string>
     <string name="result_win_o">O POBJEĐUJE!</string>
-    <string name="result_draw">NERJEŠENO!</string>
+    <string name="result_draw">NERIJEŠENO!</string>
     <string name="result_you_win">POBJEDIO SI!</string>
     <string name="result_you_lose">RAČUNAR POBJEĐUJE</string>
     <string name="btn_play_again">IGRAJ JOŠ JEDNOM</string>
@@ -56,6 +56,7 @@
     <string name="dialog_no">NE</string>
     <string name="dialog_cancel">OTKAŽI</string>
     <string name="toast_stats_reset">Statistika je resetovana</string>
+    <string name="difficulty_player_symbol">Simbol igrača</string>
 
     <!--  Statistika  -->
     <string name="title_stats">Statistika</string>
