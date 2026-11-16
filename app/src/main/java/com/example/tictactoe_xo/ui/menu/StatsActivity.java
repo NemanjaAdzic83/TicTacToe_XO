@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.databinding.ActivityStatsBinding;
 import com.example.tictactoe_xo.model.GameStats;
+import com.example.tictactoe_xo.model.SoloStats;
 import com.example.tictactoe_xo.util.InsetsHelper;
 import com.example.tictactoe_xo.viewmodel.SettingsViewModel;
 
@@ -29,30 +30,43 @@ public class StatsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         viewModel.refreshStats();
 
-        viewModel.getDuoStats().observe(this, this::renderStats);
+        viewModel.getSoloStats().observe(this, this::renderSoloStats);
+        viewModel.getDuoStats().observe(this, this::renderDuoStats);
 
         binding.btnBackStats.setOnClickListener(v-> finish());
 
     }
 
-    private void renderStats(GameStats gameStats) {
-        if (gameStats == null) return;
+    private void renderSoloStats(SoloStats soloStats) {
+        if (soloStats == null) return;
 
-        int total = gameStats.getTotalGames();
+        binding.tvHumanWins.setText(String.valueOf(soloStats.getHumanWins()));
+        binding.tvAiWins.setText(String.valueOf(soloStats.getAiWins()));
+        binding.tvSoloDraws.setText(String.valueOf(soloStats.getDraws()));
 
-        binding.tvTotalGames.setText(String.valueOf(total));
-        binding.tvXWins.setText(String.valueOf(gameStats.getWinX()));
-        binding.tvOWins.setText(String.valueOf(gameStats.getWinO()));
-        binding.tvDraws.setText(String.valueOf(gameStats.getDraw()));
-
-        if (total == 0){
-           binding.tvWinRate.setText(R.string.stats_no_value);
-           binding.tvEmptyStateStats.setVisibility(View.VISIBLE);
-        }else {
-            binding.tvWinRate.setText(String.format(Locale.getDefault(), "%.0f%%", gameStats.getWinRateX()));
-            binding.tvEmptyStateStats.setVisibility(View.GONE);
+        if (soloStats.getTotalGames() == 0) {
+            binding.tvWinRate.setText(R.string.stats_no_value);
+        } else {
+            binding.tvWinRate.setText(String.format(Locale.getDefault(), "%.0f%%", soloStats.getHumanWinRate()));
         }
+        updateEmptyState();
+    }
 
+    private void renderDuoStats(GameStats duoStats) {
+        if (duoStats == null) return;
+
+        binding.tvXWins.setText(String.valueOf(duoStats.getWinX()));
+        binding.tvOWins.setText(String.valueOf(duoStats.getWinO()));
+        binding.tvDraws.setText(String.valueOf(duoStats.getDraw()));
+        updateEmptyState();
+    }
+
+    // The empty-state message is shown only when no game was played in either mode
+    private void updateEmptyState() {
+        SoloStats solo = viewModel.getSoloStats().getValue();
+        GameStats duo = viewModel.getDuoStats().getValue();
+        int total = (solo != null ? solo.getTotalGames() : 0) + (duo != null ? duo.getTotalGames() : 0);
+        binding.tvEmptyStateStats.setVisibility(total == 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override

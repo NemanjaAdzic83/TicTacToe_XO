@@ -59,11 +59,14 @@
 
     <!--  Statistika  -->
     <string name="title_stats">Statistika</string>
-    <string name="stats_total_games">Ukupno partija</string>
+    <string name="stats_section_solo">Protiv AI</string>
+    <string name="stats_section_duo">Dva igrača</string>
+    <string name="stats_human_wins">Ti</string>
+    <string name="stats_ai_wins">AI</string>
     <string name="stats_x_wins">Pobjede X</string>
     <string name="stats_o_wins">Pobjede O</string>
     <string name="stats_draws">Neriješeno</string>
-    <string name="stats_win_rate">Procenat pobjeda</string>
+    <string name="stats_win_rate">Tvoj procenat pobjeda</string>
     <string name="stats_empty">Još nema odigranih partija</string>
     <string name="stats_no_value">-</string>
 
