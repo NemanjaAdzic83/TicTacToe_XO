@@ -93,7 +93,8 @@ public class Board {
         for (int[] combo : WIN_COMBINATIONS){
             if (cells[combo[0]] == player && cells[combo[1]] == player
             && cells[combo[2]] == player){
-                return new WinLine(combo,resolveLineType(combo));
+                // clone() so callers can't modify the shared WIN_COMBINATIONS array
+                return new WinLine(combo.clone(),resolveLineType(combo));
             }
         }
         return null;

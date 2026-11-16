@@ -121,6 +121,18 @@ public class BoardTest {
         assertNull(board.findWinLine(Player.O));
     }
 
+    @Test
+    public void findWinLine_changingReturnedIndexes_doesNotChangeWinRules() {
+        WinLine winLine = boardOf("XXX" + "OO." + "...").findWinLine(Player.X);
+
+        winLine.getCellIndexes()[0] = 8;   // a caller modifies the returned array
+
+        // A fresh board must still recognise the top row as a win
+        WinLine fresh = boardOf("XXX" + "OO." + "...").findWinLine(Player.X);
+        assertNotNull(fresh);
+        assertArrayEquals(new int[]{0, 1, 2}, fresh.getCellIndexes());
+    }
+
     // ---------- game status ----------
 
     @Test
