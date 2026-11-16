@@ -8,6 +8,7 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 - Aplikacija radi: meni, SOLO (protiv AI) i DUO mod, izbor težine, podešavanja, statistika.
 - Prvi krug ispravki grešaka je završen (vidi tabelu ispod).
 - Statistika je podijeljena na SOLO (čovjek/AI) i DUO (X/O) – pitanje #11 riješeno.
+- Nova neon launcher ikonica (varijanta A "Dvoboj"), provjerena na tabletu.
 - Sve izmjene su commitovane i poslate na GitHub (`main`).
 
 ## Završeno
@@ -26,6 +27,8 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 | 2026-11-16 | `d330179` | Nova klasa `SoloStats` (čovjek/AI) + prvi unit testovi (`SoloStatsTest`) |
 | 2026-11-16 | `abe5d83` | SOLO rezultati se snimaju kao čovjek/AI; DUO zadržava stare X/O ključeve |
 | 2026-11-16 | `87a0f3f` | Ekran statistike: odvojene sekcije "Protiv AI" i "Dva igrača" |
+| 2026-11-16 | `7cbfcb3` | Adaptivna launcher ikonica (vektori): tamna pozadina + mreža, neon X/O, monochrome sloj |
+| 2026-11-16 | `fbc83f4` | Legacy ikonice (API 24–25) kao PNG sa pravim glow-om; pregled `docs/icon/ic_launcher_preview_1024.png` |
 
 ## Trenutni zadatak
 
@@ -60,3 +63,9 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
 - [x] **#11** Statistika broji pobjede X/O, a ne čovjek/AI – u SOLO modu "Win rate X" nema jasno značenje.
   Riješeno (opcija A): `SoloStats` za SOLO, `GameStats` ostaje za DUO i skor meča.
   Napomena: stari X/O podaci (prije 2026-11-16) sadrže i SOLO partije – zadržani su kao DUO statistika.
+- [x] **#12** Launcher ikonica iz šablona (zeleni robot) zamijenjena neon ikonicom.
+  Napomena: glow u vektoru je imitiran poluprozirnim linijama (VectorDrawable nema blur).
+  Geometrija je ista u vektorima i PNG-ovima – kod izmjene dizajna mijenjati oba.
+- [ ] Ideja: legacy PNG ikonice konvertovati u WebP (Android Studio → Convert to WebP), oko 120 KB → manje.
+- [ ] Ideja: unit testovi za `Board` (`evaluateStatus()`, `findWinLine()`) i `TicTacToeAI`.
+- [ ] Ideja: napraviti `README.md` (opis, tehnologije, pokretanje).
