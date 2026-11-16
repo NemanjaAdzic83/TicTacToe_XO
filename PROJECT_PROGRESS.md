@@ -1,6 +1,6 @@
 # PROJECT_PROGRESS.md
 
-Praćenje napretka na projektu TicTacToe XO: šta je završeno, na čemu se radi i šta slijedi.
+Praćenje napretka na projektu TicTacToe NEON (repozitorijum `TicTacToe_XO`): šta je završeno, na čemu se radi i šta slijedi.
 Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, review).
 
 ## Trenutno stanje
@@ -11,6 +11,8 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 - Nova neon launcher ikonica (varijanta A "Dvoboj"), provjerena na tabletu.
 - Unit testovi za čistu Java logiku: `SoloStatsTest` (8), `BoardTest` (15), `TicTacToeAITest` (15).
   Pokretanje: `gradlew :app:testDebugUnitTest` (svi prolaze).
+- Aplikacija se zove **TicTacToe NEON** (`app_name`).
+- Dokumentacija: `README.md` sa screenshot-ovima iz `docs/screenshots/`.
 - Sve izmjene su commitovane i poslate na GitHub (`main`).
 
 ## Završeno
@@ -35,6 +37,8 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 | 2026-11-16 | `b4f6a07` | `findWinLine` vraća kopiju kombinacije (`clone()`) + test koji bez nje pada |
 | 2026-11-16 | `c06094b` | Unit testovi za `TicTacToeAI`, uključujući iscrpnu provjeru da HARD nikad ne gubi |
 | 2026-11-16 | `1aa26ee` | `TicTacToeAI(Random random)` – ubrizgavanje zavisnosti; EASY/MEDIUM testirani preko `FixedRandom` stub-a |
+| 2026-11-16 | `7dd4701` | UI ispravke ("neriješeno", labela "Simbol igrača", margine i boje tabele rezultata), ime "TicTacToe NEON", screenshot-ovi u `docs/screenshots/` |
+| 2026-11-16 | `4aefdd8` | `README.md`: funkcionalnosti, screenshot-ovi, tehnologije, arhitektura, AI, pokretanje, testovi |
 
 ## Trenutni zadatak
 
@@ -78,4 +82,7 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
 - [x] Konstruktor `TicTacToeAI(Random random)` (ubrizgavanje zavisnosti), da se EASY/MEDIUM mogu
   pouzdano testirati. Izabran stub (`FixedRandom`) umjesto fiksnog seed-a, jer test ne zavisi od
   internog redoslijeda poziva `Random`-a. `GameViewModel` i dalje koristi `new TicTacToeAI()`.
-- [ ] Ideja: napraviti `README.md` (opis, tehnologije, pokretanje).
+- [x] Napravljen `README.md` (`4aefdd8`). Kod promjene ekrana ili funkcionalnosti ažurirati i
+  screenshot-ove u `docs/screenshots/` (snimani na telefonu/emulatoru 1440×2880).
+- [ ] Sljedeće: u `app/build.gradle.kts` su `appcompat`, `material` i `constraintlayout` navedeni dva puta
+  (iz `libs.versions.toml` i ručno sa starijom verzijom). Ostaviti samo verzije iz kataloga.
