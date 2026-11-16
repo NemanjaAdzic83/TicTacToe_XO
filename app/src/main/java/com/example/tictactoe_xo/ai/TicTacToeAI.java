@@ -6,6 +6,7 @@ import com.example.tictactoe_xo.model.GameStatus;
 import com.example.tictactoe_xo.model.Player;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -18,7 +19,17 @@ import java.util.Random;
  */
 
 public class TicTacToeAI {
-    private final Random random = new Random();
+    private final Random random;
+
+    /** Production use: real randomness. */
+    public TicTacToeAI() {
+        this(new Random());
+    }
+
+    /** Lets callers (e.g. tests) control the randomness. */
+    public TicTacToeAI(Random random) {
+        this.random = Objects.requireNonNull(random, "random");
+    }
 
 
     /**

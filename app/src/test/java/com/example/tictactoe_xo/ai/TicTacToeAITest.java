@@ -11,6 +11,8 @@ import com.example.tictactoe_xo.model.Player;
 
 import org.junit.Test;
 
+import java.util.Random;
+
 public class TicTacToeAITest {
 
     private final TicTacToeAI ai = new TicTacToeAI();
@@ -102,6 +104,65 @@ public class TicTacToeAITest {
         Board board = boardOf("XX." + "OO." + "X..");
 
         assertEquals(5, ai.computeMove(board, Player.O, Difficulty.HARD));
+    }
+
+    // ---------- EASY / MEDIUM with controlled randomness ----------
+
+    /** Test double: returns fixed values instead of random ones. */
+    private static class FixedRandom extends Random {
+        private final boolean coin;
+        private final int index;
+
+        FixedRandom(boolean coin, int index) {
+            this.coin = coin;
+            this.index = index;
+        }
+
+        @Override
+        public boolean nextBoolean() {
+            return coin;
+        }
+
+        @Override
+        public int nextInt(int bound) {
+            return index;
+        }
+    }
+
+    // Empty cells are [2, 5, 7, 8]: best move for O is 5 (win), "random" with index 0 is 2
+    private static final Board WIN_OR_BLOCK = boardOf("XX." + "OO." + "X..");
+
+    @Test
+    public void medium_whenCoinChoosesBest_playsBestMove() {
+        TicTacToeAI medium = new TicTacToeAI(new FixedRandom(true, 0));
+
+        assertEquals(5, medium.computeMove(WIN_OR_BLOCK, Player.O, Difficulty.MEDIUM));
+    }
+
+    @Test
+    public void medium_whenCoinChoosesRandom_playsRandomCell() {
+        TicTacToeAI medium = new TicTacToeAI(new FixedRandom(false, 0));
+
+        assertEquals(2, medium.computeMove(WIN_OR_BLOCK, Player.O, Difficulty.MEDIUM));
+    }
+
+    @Test
+    public void easy_ignoresCoinAndPlaysRandomCell() {
+        TicTacToeAI easy = new TicTacToeAI(new FixedRandom(true, 0));
+
+        assertEquals(2, easy.computeMove(WIN_OR_BLOCK, Player.O, Difficulty.EASY));
+    }
+
+    @Test
+    public void emptyBoard_firstMoveComesFromRandom() {
+        TicTacToeAI hard = new TicTacToeAI(new FixedRandom(true, 4));
+
+        assertEquals(4, hard.computeMove(new Board(), Player.X, Difficulty.HARD));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void constructor_nullRandom_throwsNullPointerException() {
+        new TicTacToeAI(null);
     }
 
     // ---------- HARD: exhaustive "never loses" check ----------
