@@ -9,6 +9,8 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 - Prvi krug ispravki grešaka je završen (vidi tabelu ispod).
 - Statistika je podijeljena na SOLO (čovjek/AI) i DUO (X/O) – pitanje #11 riješeno.
 - Nova neon launcher ikonica (varijanta A "Dvoboj"), provjerena na tabletu.
+- Unit testovi za čistu Java logiku: `SoloStatsTest` (8), `BoardTest` (15), `TicTacToeAITest` (10).
+  Pokretanje: `gradlew :app:testDebugUnitTest` (svi prolaze).
 - Sve izmjene su commitovane i poslate na GitHub (`main`).
 
 ## Završeno
@@ -29,6 +31,9 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 | 2026-11-16 | `87a0f3f` | Ekran statistike: odvojene sekcije "Protiv AI" i "Dva igrača" |
 | 2026-11-16 | `7cbfcb3` | Adaptivna launcher ikonica (vektori): tamna pozadina + mreža, neon X/O, monochrome sloj |
 | 2026-11-16 | `fbc83f4` | Legacy ikonice (API 24–25) kao PNG sa pravim glow-om; pregled `docs/icon/ic_launcher_preview_1024.png` |
+| 2026-11-16 | `6e8ecfd` | Unit testovi za `Board` (polja, sve 8 linija, neriješeno, pobjeda u zadnjem potezu, kopija) |
+| 2026-11-16 | `b4f6a07` | `findWinLine` vraća kopiju kombinacije (`clone()`) + test koji bez nje pada |
+| 2026-11-16 | `c06094b` | Unit testovi za `TicTacToeAI`, uključujući iscrpnu provjeru da HARD nikad ne gubi |
 
 ## Trenutni zadatak
 
@@ -67,5 +72,8 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
   Napomena: glow u vektoru je imitiran poluprozirnim linijama (VectorDrawable nema blur).
   Geometrija je ista u vektorima i PNG-ovima – kod izmjene dizajna mijenjati oba.
 - [ ] Ideja: legacy PNG ikonice konvertovati u WebP (Android Studio → Convert to WebP), oko 120 KB → manje.
-- [ ] Ideja: unit testovi za `Board` (`evaluateStatus()`, `findWinLine()`) i `TicTacToeAI`.
+- [x] Unit testovi za `Board` i `TicTacToeAI`.
+  Usput nađeno: `findWinLine` je dijelio statički niz `WIN_COMBINATIONS` sa `WinLine` – ispravljeno (`b4f6a07`).
+- [ ] Ideja: konstruktor `TicTacToeAI(Random random)` (ubrizgavanje zavisnosti), da se MEDIUM može
+  testirati sa fiksnim seed-om. Trenutno se za EASY/MEDIUM provjeravaju samo pravila (slobodno polje).
 - [ ] Ideja: napraviti `README.md` (opis, tehnologije, pokretanje).
