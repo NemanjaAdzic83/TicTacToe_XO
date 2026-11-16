@@ -7,6 +7,7 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 
 - Aplikacija radi: meni, SOLO (protiv AI) i DUO mod, izbor težine, podešavanja, statistika.
 - Prvi krug ispravki grešaka je završen (vidi tabelu ispod).
+- Statistika je podijeljena na SOLO (čovjek/AI) i DUO (X/O) – pitanje #11 riješeno.
 - Sve izmjene su commitovane i poslate na GitHub (`main`).
 
 ## Završeno
@@ -22,10 +23,13 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 | 2026-11-12 | `d5ebf41` | `InsetsHelper`: sadržaj ne ide ispod sistemskih traka (Android 15+) |
 | 2026-11-12 | `b312b7a` | Dodati `CLAUDE.md` i projektni skillovi |
 | 2026-11-13 | —         | Dodat `PROJECT_PROGRESS.md` |
+| 2026-11-16 | `d330179` | Nova klasa `SoloStats` (čovjek/AI) + prvi unit testovi (`SoloStatsTest`) |
+| 2026-11-16 | `abe5d83` | SOLO rezultati se snimaju kao čovjek/AI; DUO zadržava stare X/O ključeve |
+| 2026-11-16 | `87a0f3f` | Ekran statistike: odvojene sekcije "Protiv AI" i "Dva igrača" |
 
 ## Trenutni zadatak
 
-- Sve stavke iz code review-a (#1–#10) su završene. Otvoreno je pitanje #11.
+- Nema aktivnog zadatka. Sve stavke iz code review-a (#1–#10) i pitanje #11 su završeni.
 
 ## Sljedeći koraci (code review, 2026-11-13)
 
@@ -53,4 +57,6 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
 
 ## Otvorena pitanja / ideje za kasnije
 
-- **#11** Statistika broji pobjede X/O, a ne čovjek/AI – u SOLO modu "Win rate X" nema jasno značenje.
+- [x] **#11** Statistika broji pobjede X/O, a ne čovjek/AI – u SOLO modu "Win rate X" nema jasno značenje.
+  Riješeno (opcija A): `SoloStats` za SOLO, `GameStats` ostaje za DUO i skor meča.
+  Napomena: stari X/O podaci (prije 2026-11-16) sadrže i SOLO partije – zadržani su kao DUO statistika.
