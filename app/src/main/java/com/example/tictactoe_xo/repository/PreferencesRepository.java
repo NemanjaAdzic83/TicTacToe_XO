@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.example.tictactoe_xo.model.GameStats;
 import com.example.tictactoe_xo.model.GameStatus;
+import com.example.tictactoe_xo.model.Player;
+import com.example.tictactoe_xo.model.SoloStats;
 
 public class PreferencesRepository {
 
@@ -25,6 +27,11 @@ public class PreferencesRepository {
     private static final String KEY_STATS_WINS_X = "stats_win_x";
     private static final String KEY_STATS_WINS_O = "stats_wins_o";
     private static final String KEY_STATS_DRAWS = "stats_draws";
+
+    // SOLO stats are counted per side (human/AI), not per symbol
+    private static final String KEY_SOLO_HUMAN_WINS = "stats_solo_human_wins";
+    private static final String KEY_SOLO_AI_WINS = "stats_solo_ai_wins";
+    private static final String KEY_SOLO_DRAWS = "stats_solo_draws";
 
 
     private final SharedPreferences prefs;
@@ -85,15 +92,16 @@ public class PreferencesRepository {
 
 
     //--------------- KUMULATIVNA STATISTIKA -----------
-    public GameStats loadStats(){
+    // DUO stats keep the original keys, so data saved before the SOLO/DUO split is preserved
+    public GameStats loadDuoStats(){
         int x = prefs.getInt(KEY_STATS_WINS_X,0);
         int o = prefs.getInt(KEY_STATS_WINS_O,0);
         int d = prefs.getInt(KEY_STATS_DRAWS,0);
         return new GameStats(x,o,d);
     }
 
-    public void saveStatsForResult(GameStatus status){
-        GameStats current = loadStats();
+    public void saveDuoResult(GameStatus status){
+        GameStats current = loadDuoStats();
         current.incrementForStatus(status);
         prefs.edit()
                 .putInt(KEY_STATS_WINS_X, current.getWinX())
@@ -101,12 +109,33 @@ public class PreferencesRepository {
                 .putInt(KEY_STATS_DRAWS, current.getDraw())
                 .apply();
     }
-    
+
+    public SoloStats loadSoloStats(){
+        int human = prefs.getInt(KEY_SOLO_HUMAN_WINS,0);
+        int ai = prefs.getInt(KEY_SOLO_AI_WINS,0);
+        int d = prefs.getInt(KEY_SOLO_DRAWS,0);
+        return new SoloStats(human,ai,d);
+    }
+
+    public void saveSoloResult(GameStatus status, Player humanPlayer){
+        SoloStats current = loadSoloStats();
+        current.incrementForResult(status, humanPlayer);
+        prefs.edit()
+                .putInt(KEY_SOLO_HUMAN_WINS, current.getHumanWins())
+                .putInt(KEY_SOLO_AI_WINS, current.getAiWins())
+                .putInt(KEY_SOLO_DRAWS, current.getDraws())
+                .apply();
+    }
+
+    // Resets both SOLO and DUO stats
     public void resetStats(){
         prefs.edit()
                 .putInt(KEY_STATS_WINS_X,0)
                 .putInt(KEY_STATS_WINS_O,0)
                 .putInt(KEY_STATS_DRAWS,0)
+                .putInt(KEY_SOLO_HUMAN_WINS,0)
+                .putInt(KEY_SOLO_AI_WINS,0)
+                .putInt(KEY_SOLO_DRAWS,0)
                 .apply();
     }
 

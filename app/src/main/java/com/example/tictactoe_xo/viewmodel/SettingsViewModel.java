@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.tictactoe_xo.R;
 import com.example.tictactoe_xo.model.GameStats;
+import com.example.tictactoe_xo.model.SoloStats;
 import com.example.tictactoe_xo.repository.PreferencesRepository;
 
 
@@ -26,7 +27,8 @@ public class SettingsViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> vibrationEnabled = new MutableLiveData<>();
     private final MutableLiveData<Integer> colorX = new MutableLiveData<>();
     private final MutableLiveData<Integer> colorO = new MutableLiveData<>();
-    private final MutableLiveData<GameStats> stats = new MutableLiveData<>();
+    private final MutableLiveData<GameStats> duoStats = new MutableLiveData<>();
+    private final MutableLiveData<SoloStats> soloStats = new MutableLiveData<>();
 
     public SettingsViewModel(@NonNull Application application) {
         super(application);
@@ -41,7 +43,7 @@ public class SettingsViewModel extends AndroidViewModel {
         colorX.setValue(prefsRepo.getPlayerXColor(defaultX));
         colorO.setValue(prefsRepo.getPlayerOColor(defaultO));
 
-        stats.setValue(prefsRepo.loadStats());
+        loadStats();
     }
 
     public LiveData<Boolean> getSoundEnabled() {
@@ -60,8 +62,12 @@ public class SettingsViewModel extends AndroidViewModel {
         return colorO;
     }
 
-    public LiveData<GameStats> getStats() {
-        return stats;
+    public LiveData<GameStats> getDuoStats() {
+        return duoStats;
+    }
+
+    public LiveData<SoloStats> getSoloStats() {
+        return soloStats;
     }
 
     public void setVibrationEnabled(boolean enabled){
@@ -85,11 +91,16 @@ public class SettingsViewModel extends AndroidViewModel {
 
     public void resetStats(){
         prefsRepo.resetStats();
-        stats.setValue(prefsRepo.loadStats());
+        loadStats();
     }
 
     public void refreshStats(){
-        stats.setValue(prefsRepo.loadStats());
+        loadStats();
+    }
+
+    private void loadStats(){
+        duoStats.setValue(prefsRepo.loadDuoStats());
+        soloStats.setValue(prefsRepo.loadSoloStats());
     }
 
 }

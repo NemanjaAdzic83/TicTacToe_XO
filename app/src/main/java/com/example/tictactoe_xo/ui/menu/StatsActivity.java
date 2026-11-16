@@ -29,7 +29,7 @@ public class StatsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
         viewModel.refreshStats();
 
-        viewModel.getStats().observe(this, this::renderStats);
+        viewModel.getDuoStats().observe(this, this::renderStats);
 
         binding.btnBackStats.setOnClickListener(v-> finish());
 

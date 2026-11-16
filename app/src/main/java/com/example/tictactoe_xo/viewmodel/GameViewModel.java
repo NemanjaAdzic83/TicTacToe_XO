@@ -233,7 +233,11 @@ public class GameViewModel extends AndroidViewModel {
         gameEndEventLive.setValue(new Event<>(status));
         matchScore.incrementForStatus(status);
         matchScoreLive.setValue(matchScore);
-        prefsRepo.saveStatsForResult(status);
+        if (gameMode == GameMode.SOLO) {
+            prefsRepo.saveSoloResult(status, humanPlayer);
+        } else {
+            prefsRepo.saveDuoResult(status);
+        }
 
         if (status == GameStatus.WIN_X){
             winLineLive.setValue(board.findWinLine(Player.X));
