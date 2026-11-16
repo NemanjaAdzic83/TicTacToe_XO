@@ -9,7 +9,7 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 - Prvi krug ispravki grešaka je završen (vidi tabelu ispod).
 - Statistika je podijeljena na SOLO (čovjek/AI) i DUO (X/O) – pitanje #11 riješeno.
 - Nova neon launcher ikonica (varijanta A "Dvoboj"), provjerena na tabletu.
-- Unit testovi za čistu Java logiku: `SoloStatsTest` (8), `BoardTest` (15), `TicTacToeAITest` (10).
+- Unit testovi za čistu Java logiku: `SoloStatsTest` (8), `BoardTest` (15), `TicTacToeAITest` (15).
   Pokretanje: `gradlew :app:testDebugUnitTest` (svi prolaze).
 - Sve izmjene su commitovane i poslate na GitHub (`main`).
 
@@ -34,6 +34,7 @@ Ažurira se nakon svake završene logičke cjeline (fix, nova funkcionalnost, re
 | 2026-11-16 | `6e8ecfd` | Unit testovi za `Board` (polja, sve 8 linija, neriješeno, pobjeda u zadnjem potezu, kopija) |
 | 2026-11-16 | `b4f6a07` | `findWinLine` vraća kopiju kombinacije (`clone()`) + test koji bez nje pada |
 | 2026-11-16 | `c06094b` | Unit testovi za `TicTacToeAI`, uključujući iscrpnu provjeru da HARD nikad ne gubi |
+| 2026-11-16 | `1aa26ee` | `TicTacToeAI(Random random)` – ubrizgavanje zavisnosti; EASY/MEDIUM testirani preko `FixedRandom` stub-a |
 
 ## Trenutni zadatak
 
@@ -74,6 +75,7 @@ Redosljed rada: #1 → #3 → #2 → sitne stavke. Svaka ispravka = poseban comm
 - [ ] Ideja: legacy PNG ikonice konvertovati u WebP (Android Studio → Convert to WebP), oko 120 KB → manje.
 - [x] Unit testovi za `Board` i `TicTacToeAI`.
   Usput nađeno: `findWinLine` je dijelio statički niz `WIN_COMBINATIONS` sa `WinLine` – ispravljeno (`b4f6a07`).
-- [ ] Ideja: konstruktor `TicTacToeAI(Random random)` (ubrizgavanje zavisnosti), da se MEDIUM može
-  testirati sa fiksnim seed-om. Trenutno se za EASY/MEDIUM provjeravaju samo pravila (slobodno polje).
+- [x] Konstruktor `TicTacToeAI(Random random)` (ubrizgavanje zavisnosti), da se EASY/MEDIUM mogu
+  pouzdano testirati. Izabran stub (`FixedRandom`) umjesto fiksnog seed-a, jer test ne zavisi od
+  internog redoslijeda poziva `Random`-a. `GameViewModel` i dalje koristi `new TicTacToeAI()`.
 - [ ] Ideja: napraviti `README.md` (opis, tehnologije, pokretanje).
